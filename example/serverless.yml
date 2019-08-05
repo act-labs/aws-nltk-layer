@@ -1,0 +1,25 @@
+
+
+service: aws-nltk-example
+
+provider:
+  name: aws
+  runtime: python3.7
+  environment:
+    NLTK_DATA: /opt/nltk_data
+
+functions:
+  synonyms:
+    handler: handler.synonyms
+    layers:
+      - XXXXXXXX
+    events:
+      - http:
+          path: synonyms/{word}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                word: true          
+
